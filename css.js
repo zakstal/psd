@@ -1,7 +1,7 @@
 var valid = require('./whiteList');
-var addPx = require('./addPx');
+var addPx = require('./adjustStyles');
 
 
 module.exports = function (cssObj) {
-    return addPx(valid(cssObj));
+    return adjustStyles(valid(cssObj));
 };

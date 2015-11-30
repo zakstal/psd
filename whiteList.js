@@ -1,3 +1,7 @@
+/**
+ * Outputs a new object with only white listed css attributes
+ * and any additional attributes.
+ */
 (function () {
     var whiteList = {
         opacity: true,
@@ -24,6 +28,9 @@
                 return newObj['display'] = 'none';
             }
 
+            /**
+             * Adding correct text attributes from psd obj
+             */
             if (key === 'text' && cssObj[key] && Object.keys(cssObj[key]).length > 0) {
                 var textObj = cssObj[key];
                 var text = textObj.value;

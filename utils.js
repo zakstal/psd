@@ -1,3 +1,6 @@
+/**
+ * Utilities such as getting a random color
+ */
 (function () {
 
     var randomNum = function () {

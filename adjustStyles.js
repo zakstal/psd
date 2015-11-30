@@ -1,3 +1,6 @@
+/**
+ * Outputs new file with adjusted styles.
+ */
 (function () {
     var addPxList = {
         left: true,

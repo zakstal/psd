@@ -1,5 +1,41 @@
-var addCss = require('./css');
-var addPx = require('./addPx');
+/**
+ * Representation of a tag element.
+ *
+ * Initializing:
+ *
+ * To initialize pass in an object to new tag(cssObj)
+ * that represents some or all of the css for the tag.
+ * The cssObj should come from the psd.js output.
+ * valid css tags will be filtered and added to tag.css.
+ * the raw obj will be added to tag.obj
+ *
+ * var tag = new tag(cssObj)
+ *
+ *
+ *
+ * Important Methods:
+ *
+ * tag.addCss(cssObj)
+ *
+ * will add css to tag.css overwriting any properites that exist
+ * in both tag.css and cssObj
+ *
+ *
+ * tag.createChild(cssObj)
+ *
+ * Creates a new tag and adds it as a child to the current tag.
+ * Returns the newly created child tag.
+ *
+ *
+ * tag.getTag(whatStyle)
+ *
+ * Will return the current tag and all its children in a string
+ * rendered as html. Leave whatStyle blank if you want the tags to
+ * render without inline styles. Add 'inline' in place of whatStyle
+ * to render tags with inline style like so:
+ * tag.getTag('inline')
+ *
+ */
 var whiteList = require('./whiteList');
 
 var tag = function (cssObj) {
@@ -49,7 +85,7 @@ tag.prototype = {
     },
 
     formatCss: function () {
-        return addPx(this.css);
+        return adjustStyles(this.css);
     },
 
     addChild: function (child) {
