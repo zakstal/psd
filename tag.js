@@ -36,6 +36,8 @@
  * tag.getTag('inline')
  *
  */
+
+var adjustStyles = require('./adjustStyles');
 var whiteList = require('./whiteList');
 
 var tag = function (cssObj) {

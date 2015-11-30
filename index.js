@@ -47,7 +47,7 @@ var correctPosition = function (child, parent) {
  * @param child
  */
 var addCssToChild = function (child) {
-    child.background = '#' + utils.randomColor();
+    //child.background = '#' + utils.randomColor();
     child.position = 'absolute';
     //child.overflow = 'hidden';
 };
