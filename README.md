@@ -2,7 +2,7 @@ First attempt at rendering a psd in html.
 
 To run:
 
-naigate to root and in the console run:
+navigate to root and in the console run:
 npm i
 
 in index.js add a path to a psd to the path variable.
