@@ -4,7 +4,7 @@ var tag = require('./tag');
 var utils = require('./utils');
 var path = '/Users/USNY-ZStallings/Desktop/westcon\ folder/Final\ Templates/Desktop/westcon_newsroom.psd';
 //var path = '/Users/USNY-ZStallings/Desktop/westcon\ folder/Final\ Templates/Desktop/westcon_productcatalog_newfilters.psd';
-//var path = '/Users/USNY-ZStallings/Desktop/wegmens-folder/Final\ global\ Assets/Wegmans-nav-1024_tablet_landscape.psd';
+//var path = 'test.psd';
 var writePath = 'index.html';
 
 
@@ -25,7 +25,24 @@ var document = tree.document;
 psd.image.toPng();
 psd.image.saveAsPng('main.png');
 
+//console.log('tree', tree, tree.children[0]);
 
+var find = function (tree, attr, tofind, cb) {
+  if (tree.children) {
+      tree.children.forEach(function (child) {
+          if (child[attr] === tofind) {
+              cb(child);
+          }
+
+          find(child, attr, tofind, cb);
+      });
+  }
+};
+
+//find(tree, 'name', 'About Us Company Overview Leadership Global Offices Become a Re', function (child) {
+//    console.log('child', child);
+//    console.log('child', child.text);
+//});
 /**
  * Corrects the position of child elements.
  * because the position of all tags are absolute
@@ -96,9 +113,15 @@ var processTree = function (tree, parent) {
  * @type {*}
  */
 var doc = processTree(tree);
-var style = '<style>p{ margin: 0;}</style>\n';
+var output = [
+    '<style>p{ margin: 0;}</style>\n',
+    doc.getTag('inline'),
+    '<script src="./selector.js"></script>'
+];
 
 var wstream = fs.createWriteStream(writePath);
-wstream.write(style + doc.getTag('inline'));
+wstream.write(output.join(''));
 wstream.end();
 console.log('Success!');
+
+module.exports = doc;

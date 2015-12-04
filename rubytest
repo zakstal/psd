@@ -1,0 +1,15 @@
+psd.tree.children.each do |child|
+    p child.name if child.name == 'About Us Company Overview Leadership Global Offices Become a Re'
+end
+
+def find(tree, attr, toFind)
+    if tree.children
+        tree.children.each do |child|
+            if child.send(attr.to_sym) === toFind
+                pp child.to_hash
+            end
+
+            find(child, attr, toFind)
+        end
+    end
+end

@@ -9,7 +9,8 @@
         bottom: true,
         height: true,
         width: true,
-        'font-size': true
+        'font-size': true,
+        'line-height': true
     };
 
     module.exports = function (cssObj) {

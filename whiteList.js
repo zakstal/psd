@@ -21,11 +21,11 @@
         var newObj = {};
         Object.keys(cssObj).forEach(function (key) {
             if (whiteList[key]) {
-                return newObj[key] = cssObj[key];
+                newObj[key] = cssObj[key];
             }
 
             if (key === 'visible' && cssObj[key] === 'false') {
-                return newObj['display'] = 'none';
+                newObj['display'] = 'none';
             }
 
             /**
