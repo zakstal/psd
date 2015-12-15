@@ -1,3 +1,10 @@
+/**
+ * TODO:
+ * make selector div able to go in reverse direction
+ * adjust selector div for scroll
+ * refactor addevenlitener out
+ */
+
 (function () {
     'use strict';
 
@@ -36,8 +43,8 @@
             document.addEventListener("mousedown", function (e) {
                 console.log('start X: ', e.clientX, ' start Y: ', e.clientY);
                 _this.draw = true;
-                _this.xStart = e.clientX;
-                _this.yStart = e.clientY;
+                _this.xStart = e.clientX + window.scrollX;
+                _this.yStart = e.clientY + window.scrollY;
                 _this.addSelectorEl({top: _this.yStart, left: _this.xStart})
             });
         },
@@ -48,8 +55,8 @@
             document.addEventListener("mouseup", function (e) {
                 console.log('end X: ', e.clientX, ' end Y: ', e.clientY);
                 _this.draw = false;
-                _this.xEnd = e.clientX;
-                _this.yEnd = e.clientY;
+                _this.xEnd = e.clientX + window.scrollX;
+                _this.yEnd = e.clientY + window.scrollY;
                 matches = _this.findMatches();
                 _this.removeSelectorEl();
                 console.log('all matches', matches);
@@ -58,6 +65,7 @@
 
         addSelectorEl: function (options) {
             this.selectorEl = document.createElement('div');
+            this.selectorEl.classList.add('selector-window');
             var style = this.selectorEl.style;
             style.border = '1px solid red';
             style.position = 'absolute';
@@ -71,8 +79,8 @@
         },
 
         changeSelectorEl: function (options) {
-            var width = Math.abs(this.xStart - options.xpos);
-            var height = Math.abs(this.yStart - options.ypos);
+            var width = Math.abs(this.xStart - (options.xpos + window.scrollX));
+            var height = Math.abs(this.yStart - (options.ypos + window.scrollY));
             this.selectorEl.style.width = width;
             this.selectorEl.style.height = height;
         },
@@ -87,7 +95,7 @@
 
         addMatches: function (list, el) {
             if (this.isWithin(el))  {
-                return list.push(el);
+                return list.push(el.innerText);
             }
 
             return list;
@@ -98,9 +106,6 @@
             var left = parseInt(el.getAttribute('data-left'), 10);
             var right = left + parseInt(el.style.width, 10);
             var bottom = top + parseInt(el.style.height, 10);
-            //console.log('attribute data top', el.getAttribute('data-top'));
-            //console.log('top bottom left righ', top, bottom, left, right);
-            //console.log('between', this.betweenY(top), this.betweenY(bottom), this.betweenX(left), this.betweenX(right));
             return this.betweenY(top) && this.betweenY(bottom) && this.betweenX(left) && this.betweenX(right);
         },
 

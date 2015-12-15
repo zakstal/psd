@@ -114,7 +114,7 @@ var processTree = function (tree, parent) {
  */
 var doc = processTree(tree);
 var output = [
-    '<style>p{ margin: 0;}</style>\n',
+    '<style>p{ margin: 0;} .selector-window { cursor: pointer }</style>\n',
     doc.getTag('inline'),
     '<script src="./selector.js"></script>'
 ];
