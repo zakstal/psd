@@ -28,6 +28,14 @@
                 newObj['display'] = 'none';
             }
 
+            if (key === 'top') {
+                newObj['data-top'] = cssObj[key];
+            }
+
+            if (key === 'left') {
+                newObj['data-left'] = cssObj[key];
+            }
+
             /**
              * Adding correct text attributes from psd obj
              */

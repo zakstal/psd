@@ -59,7 +59,7 @@ tag.prototype = {
     },
 
     openTagStyles: function () {
-        return '<' + this.tagName + ' ' + this.inlineStyles() + '>'
+        return '<' + this.tagName + ' ' + this.inlineStyles() + this.dataAttrToString() + '>'
     },
 
     closeTag: function () {
@@ -84,6 +84,10 @@ tag.prototype = {
         return Object.keys(css).reduce(function (str, key) {
             return str + key + ': ' + css[key] + '; ';
         }, '');
+    },
+
+    dataAttrToString: function () {
+        return ' data-top="' + this.css['data-top'] + '" data-left="' + this.css['data-left'] + '"';
     },
 
     formatCss: function () {
