@@ -1,30 +1,8 @@
-var fs = require('fs');
-var PSD = require('psd');
-var tag = require('./tag');
-var utils = require('./utils');
-var path = '/Users/USNY-ZStallings/Desktop/westcon\ folder/Final\ Templates/Desktop/westcon_newsroom.psd';
-//var path = '/Users/USNY-ZStallings/Desktop/westcon\ folder/Final\ Templates/Desktop/westcon_productcatalog_newfilters.psd';
-//var path = 'test.psd';
-var writePath = 'index.html';
+var main = require('./psdMain');
 
+console.log('initialized');
 
-/**
- * Steps to parse a psd from psd.js
- * https://github.com/meltingice/psd.js
- */
-var psd = PSD.fromFile(path);
-psd.parse();
-var tree = psd.tree().export();
-
-var document = tree.document;
-
-var docTag = new tag(tree);
-
-console.log('document', tree);
-console.log('document', docTag.find(function (attrs) {
-    return (attrs.left === 104) && (attrs.right === 1293);
-}));
-
+module.exports = new main();
 ///**
 // * Output the current psd into a png.
 // * This will be used as a background later.
