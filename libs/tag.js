@@ -29,7 +29,9 @@ tag.prototype = {
     },
 
     addChild: function (child) {
-        this.children.push(new tag(child));
+        var newChild = new tag(child);
+        newChild.parent = this;
+        this.children.push(newChild);
     },
 
     each: function (iteratee, callback) {

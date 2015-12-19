@@ -25,8 +25,9 @@ io.on('connection', function (socket) {
     });
 
     socket.on('complete', function (opt) {
-        console.log('completed on server', opt);
-        socket.emit('results', mainObj.findWithin(opt));
+        var out = mainObj.findWithin(opt);
+        console.log('completed on server', out[0]);
+        socket.emit('results');
     });
 
 });
