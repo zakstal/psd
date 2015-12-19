@@ -6,7 +6,7 @@ var path = '/Users/USNY-ZStallings/Desktop/westcon\ folder/Final\ Templates/Desk
 //var path = 'test.psd';
 var imageName = 'main.png';
 
-module.exports = PsdMain = function () {
+var PsdMain = function () {
     this.init();
 };
 
@@ -17,11 +17,7 @@ PsdMain.prototype = {
         var tree = this.psd.tree().export();
         this.tree = new tag(tree);
         this.makePng();
-        console.log();
-
-        //console.log('document', docTag.find(function (attrs) {
-        //    return (attrs.left === 104) && (attrs.right === 1293);
-        //}));
+        //console.log(this.tree.children[0]);
     },
 
     makePng: function () {
@@ -31,6 +27,18 @@ PsdMain.prototype = {
     },
 
     getDeskImgPath: function () {
-        return this.getDeskImgPath();
+        return this.deskImgPath;
+    },
+
+    findWithin: function (obj) {
+        return this.tree.find(function(attrs) {
+            return ( attrs.top > obj.Y[0]
+                && attrs.bottom < obj.Y[1]
+                && attrs.left > obj.X[0]
+                && attrs.right < obj.X[1] )
+                && attrs.top !== Infinity;
+        });
     }
 };
+
+module.exports = PsdMain;

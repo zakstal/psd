@@ -3,6 +3,7 @@ var selector = require('./selector');
 var reload = io.connect('http://192.168.0.18:3002');
 //TODO: find another solution for connect address;
 
+console.log('selector', selector);
 
 var makeTag = function (res) {
     console.log('make tag');
@@ -31,4 +32,13 @@ var addImage = function (res) {
 reload.on('load-background', function (res) {
     addImage(res);
     console.log('res', res);
+});
+
+reload.on('results', function (res) {
+    console.log('results', res);
+});
+
+selector.on('complete', function (opt) {
+    reload.emit('complete', opt);
+    console.log('completed', opt);
 });
