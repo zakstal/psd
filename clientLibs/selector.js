@@ -57,9 +57,7 @@
                 _this.draw = false;
                 _this.xEnd = e.clientX + window.scrollX;
                 _this.yEnd = e.clientY + window.scrollY;
-                matches = _this.findMatches();
                 _this.removeSelectorEl();
-                console.log('all matches', matches);
             });
         },
 
@@ -79,44 +77,14 @@
         },
 
         changeSelectorEl: function (options) {
-            var width = Math.abs(this.xStart - (options.xpos + window.scrollX));
-            var height = Math.abs(this.yStart - (options.ypos + window.scrollY));
-            this.selectorEl.style.width = width;
-            this.selectorEl.style.height = height;
-        },
+            var width = this.xStart - (options.xpos + window.scrollX);
+            var height = this.yStart - (options.ypos + window.scrollY);
+            var transX = width > 0 ? (width * -1) : 0;
+            var transY = height > 0 ? (height * -1) : 0;
+            this.selectorEl.style.width = Math.abs(width);
+            this.selectorEl.style.height = Math.abs(height);
 
-        findMatches: function () {
-            var all = document.querySelectorAll('div');
-            var reduce = Array.prototype.forEach;
-            var list = [];
-            reduce.call(all, this.addMatches.bind(this, list));
-            return list
-        },
-
-        addMatches: function (list, el) {
-            if (this.isWithin(el))  {
-                return list.push(el.innerText);
-            }
-
-            return list;
-        },
-
-        isWithin: function (el) {
-            var top = parseInt(el.getAttribute('data-top'), 10);
-            var left = parseInt(el.getAttribute('data-left'), 10);
-            var right = left + parseInt(el.style.width, 10);
-            var bottom = top + parseInt(el.style.height, 10);
-            return this.betweenY(top) && this.betweenY(bottom) && this.betweenX(left) && this.betweenX(right);
-        },
-
-        betweenX: function (pos) {
-            //console.log('x', this.xStart, this.xEnd);
-            return pos > this.xStart && this.xEnd > pos;
-        },
-
-        betweenY: function (pos) {
-            //console.log('y', this.yStart, this.yEnd);
-            return pos > this.yStart && this.yEnd > pos;
+            this.selectorEl.style.transform = 'translate(' + transX + 'px, ' + transY + 'px)';
         }
 
     };

@@ -13,14 +13,15 @@ var io = socket.listen(3002, function (err, msg) {
 });
 
 io.on('connection', function (socket) {
-    console.log('a client connected');
-    io.emit('load-background', {img: mainObj.deskImgPath});
+
+    var doc = mainObj.tree.attributes.document;
+    io.emit('load-background', {
+        img: mainObj.deskImgPath,
+        size: {width: doc.width, height: doc.height}
+    });
+
     socket.on('disconnect', function () {
         console.log('a client disconnected');
     });
 
-    socket.on('test', function(data) {
-        console.log('test fired on server', data);
-        io.emit('test');
-    });
 });
