@@ -65,8 +65,10 @@ var Event = require('../libs/events');
         sendLoc: function () {
 
             this.trigger('complete', {
-                X: [this.xStart, this.xEnd].sort(),
-                Y: [this.yStart, this.yEnd].sort()
+                xMax: Math.max(this.xStart, this.xEnd),
+                xMin: Math.min(this.xStart, this.xEnd),
+                yMax: Math.max(this.yStart, this.yEnd),
+                yMin: Math.min(this.yStart, this.yEnd)
             });
         },
 

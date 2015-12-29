@@ -30,7 +30,7 @@ tag.prototype = {
 
     addChild: function (child) {
         var newChild = new tag(child);
-        newChild.parent = this;
+        //newChild.parent = this;
         this.children.push(newChild);
     },
 

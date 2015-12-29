@@ -40,5 +40,6 @@ reload.on('results', function (res) {
 
 selector.on('complete', function (opt) {
     reload.emit('complete', opt);
-    console.log('completed', opt);
+    console.log('completed X', opt.xMax, opt.xMin);
+    console.log('completed Y', opt.yMax, opt.yMin);
 });

@@ -32,10 +32,15 @@ PsdMain.prototype = {
 
     findWithin: function (obj) {
         return this.tree.find(function(attrs) {
-            return ( attrs.top > obj.Y[0]
-                && attrs.bottom < obj.Y[1]
-                && attrs.left > obj.X[0]
-                && attrs.right < obj.X[1] )
+            console.log('find', attrs.name);
+            console.log('      top:    ', attrs.top, ' > ', obj.yMin, ' ', attrs.top > obj.yMin);
+            console.log('      bottom: ', attrs.bottom, ' < ', obj.yMax, ' ', attrs.bottom < obj.yMax);
+            console.log('      left:   ', attrs.left, ' > ', obj.xMin, ' ', attrs.left > obj.xMin);
+            console.log('      right:  ', attrs.right, ' < ', obj.xMax, ' ', attrs.right < obj.xMax);
+            return ( attrs.top > obj.yMin
+                && attrs.bottom < obj.yMax
+                && attrs.left > obj.xMin
+                && attrs.right < obj.xMax )
                 && attrs.top !== Infinity;
         });
     }
