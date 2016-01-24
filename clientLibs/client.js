@@ -16,6 +16,7 @@ reload.on('load-background', function (res) {
 
 reload.on('results', function (res) {
     console.log('results', res);
+    ui.show(res[0]);
 });
 
 selector.on('complete', function (opt) {

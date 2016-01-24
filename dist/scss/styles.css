@@ -1,15 +1,17 @@
 /* line 1, stdin */
 .css-viewer {
   background: #eee;
-  position: fixed; }
-  /* line 5, stdin */
+  position: fixed;
+  padding: 10px;
+  overflow: auto; }
+  /* line 7, stdin */
   .css-viewer.right {
     border-left: 2px solid #ddd;
     right: 0;
     top: 0;
     bottom: 0;
     width: 20%; }
-  /* line 13, stdin */
+  /* line 15, stdin */
   .css-viewer.bottom {
     border-top: 2px solid #ddd;
     right: 0;

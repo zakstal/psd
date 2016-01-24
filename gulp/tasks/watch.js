@@ -9,6 +9,6 @@ module.exports = function () {
         quiet: true
     });
 
-    gulp.watch('/Users/USNY-ZStallings/Desktop/projects/electron-apps/menubar/components/**/*.scss', ['scss']);
-    gulp.watch('/Users/USNY-ZStallings/Desktop/projects/electron-apps/menubar/components/**/*.js', ['js']);
+    gulp.watch('./clientLibs/ui/components/**/*scss', ['scss']);
+    gulp.watch('./clientLibs/**/*js', ['scripts']);
 };

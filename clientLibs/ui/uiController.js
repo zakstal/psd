@@ -55,6 +55,10 @@ Ui.prototype = {
         });
     },
 
+    show: function (content) {
+        this.cssViewer.show(content);
+    },
+
     createEl: function (el) {
         return document.createElement(el);
     }

@@ -44,11 +44,20 @@ tag.prototype = {
         return reduce.call(iteratee, callback, thing);
     },
 
+    css: function () {
+        var str = '';
+        var attr;
+        for (attr in this.attributes) {
+            str = str + '\n' + attr + ': ' + this.attributes[attr] + ';'
+        }
+
+        return str;
+    },
 
     find: function (callback) {
         var parent = [];
         if (callback(this.attributes)) {
-            parent.push(this);
+            parent.push(this.css());
         }
 
         if (this.children) {

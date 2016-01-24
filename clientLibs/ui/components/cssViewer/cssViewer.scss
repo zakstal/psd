@@ -1,6 +1,8 @@
 .css-viewer {
   background: #eee;
   position: fixed;
+  padding: 10px;
+  overflow: auto;
 
   &.right {
     border-left: 2px solid #ddd;
