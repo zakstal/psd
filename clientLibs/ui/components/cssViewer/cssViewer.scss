@@ -1,0 +1,20 @@
+.css-viewer {
+  background: #eee;
+  position: fixed;
+
+  &.right {
+    border-left: 2px solid #ddd;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    width: 20%;
+  }
+
+  &.bottom {
+    border-top: 2px solid #ddd;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    height: 20%;
+  }
+}

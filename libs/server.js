@@ -6,7 +6,7 @@ console.log('initialized');
 
 var mainObj = new main();
 
-var io = socket.listen(3002, function (err, msg) {
+var io = socket.listen(3003, function (err, msg) {
     if (err) {
         console.error(err);
     }
